@@ -1,0 +1,18 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#toss-button {
+    font-size: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#result-display {
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 30px;
+    min-height: 50px; /* 結果表示エリアの高さを確保 */
+}
