@@ -10,9 +10,49 @@ body {
     cursor: pointer;
 }
 
-#result-display {
+#coin-container {
+    width: 100px;
+    height: 100px;
+    perspective: 1000px; /* 3D効果のための奥行き */
+    margin: 30px auto;
+}
+
+#coin {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s; /* 回転アニメーション */
+}
+
+/* ★★★ コインが回転するアニメーション ★★★ */
+#coin.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* 裏面を見えなくする */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 32px;
     font-weight: bold;
-    margin-top: 30px;
-    min-height: 50px; /* 結果表示エリアの高さを確保 */
+    border-radius: 50%;
+    border: 2px solid #333;
+}
+
+.front {
+    background-color: #ffd700; /* 金色 */
+}
+
+.back {
+    background-color: #c0c0c0; /* 銀色 */
+    transform: rotateY(180deg); /* 裏面を最初から反転させておく */
+}
+#coin.temp-flip {
+    transform: rotateY(90deg); /* 半分だけ回転させる */
+    transition: transform 0.3s; /* 短いアニメーション */
 }

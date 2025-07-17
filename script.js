@@ -1,16 +1,26 @@
-// HTMLの要素を取得
+// HTMLの要素を取得 (resultDisplayをcoinに変更)
 const tossButton = document.getElementById('toss-button');
-const resultDisplay = document.getElementById('result-display');
+const coin = document.getElementById('coin'); // 変更
 
-// ボタンがクリックされた時の処理
 tossButton.addEventListener('click', () => {
-    // 0から1未満のランダムな小数を生成
-    const randomValue = Math.random(); 
+    // 既存のアニメーションクラスを削除して、アニメーションをリセット
+    coin.classList.remove('animate-flip');
 
-    // ランダムな値が0.5未満なら「表」、そうでなければ「裏」
-    if (randomValue < 0.5) {
-        resultDisplay.textContent = '表';
-    } else {
-        resultDisplay.textContent = '裏';
-    }
+    // ★ 強制的に再描画させるための、ちょっとしたおまじない
+    void coin.offsetWidth; 
+
+    // 再びアニメーションクラスを追加して、アニメーションを再生
+    coin.classList.add('animate-flip');
+
+    // アニメーションの途中で、最終的な表裏を決定する
+    setTimeout(() => {
+        const randomValue = Math.random();
+        if (randomValue < 0.5) {
+            // 表
+            coin.style.transform = 'rotateY(0deg)';
+        } else {
+            // 裏
+            coin.style.transform = 'rotateY(180deg)';
+        }
+    }, 500); // アニメーションの中間地点（1秒の半分の0.5秒）
 });
